@@ -32,6 +32,10 @@ def check_status(user_id):
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
+    """
+    Меняет статус бота
+    и запускает его
+    """
     admin = env.int('ADMIN')
     if message.from_user.id == admin:
         global status
@@ -43,6 +47,10 @@ def start_message(message):
 
 @bot.message_handler(commands=['stop'])
 def stop_message(message):
+    """
+    Меняет статус бота
+    и останавливает его
+    """
     admin = env.int('ADMIN')
     if message.from_user.id == admin:
         global status
@@ -54,6 +62,9 @@ def stop_message(message):
 
 @bot.message_handler(commands=['block'])
 def block_user(message):
+    """
+    Добавляет юзера в чс
+    """
     global black_list
     id_user = message.from_user.id
     if id_user in black_list:
@@ -66,6 +77,9 @@ def block_user(message):
 
 @bot.message_handler(commands=['unblock'])
 def unblock_user(message):
+    """
+    Убирает юзера из чс
+    """
     global black_list
     id_user = message.from_user.id
     if id_user in black_list:
@@ -78,7 +92,10 @@ def unblock_user(message):
 
 @bot.message_handler(content_types=['text'])
 def send_message_user(message):
-    """Тригер на всех, кроме инжей"""
+    """
+    Посылает рандом сообщения.
+    Агр на всех, кроме инжей
+    """
     random.shuffle(tlist)
     random.shuffle(inglist)
     user_id = message.from_user.id
