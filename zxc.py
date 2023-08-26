@@ -9,7 +9,7 @@ from list import tlist
 env = Env()
 env.read_env()
 
-bot = telebot.TeleBot(env.str('FAST'))
+bot = telebot.TeleBot(env.str('TEST'))
 
 status = 0
 black_list = []
@@ -18,6 +18,10 @@ print(black_list)
 
 
 def check_status(user_id):
+    """
+    Проверяет статус бота
+    и юзера в списке ЧС
+    """
     global status
     if status == 0:
         return False
@@ -78,8 +82,14 @@ def send_message_user(message):
     random.shuffle(tlist)
     random.shuffle(inglist)
     user_id = message.from_user.id
+    ing_user = []
     if check_status(user_id):
-        bot.reply_to(message, random.choice(tlist))
+        if user_id in ing_user:
+            bot.reply_to(message, random.choice(inglist))
+        else:
+            bot.reply_to(message, random.choice(tlist))
+    else:
+        None
 
 
 bot.polling(none_stop=True)
