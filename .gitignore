@@ -132,3 +132,5 @@ dmypy.json
 .idea
 list.py
 ingeenegr.py
+options.py
+test.py
