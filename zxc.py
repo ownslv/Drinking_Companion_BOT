@@ -9,7 +9,7 @@ from list import tlist
 env = Env()
 env.read_env()
 
-bot = telebot.TeleBot(env.str('TEST'))
+bot = telebot.TeleBot(env.str('TOKEN'))
 
 status = 0
 black_list = []
@@ -40,7 +40,7 @@ def start_message(message):
     if message.from_user.id == admin:
         global status
         status = 1
-        bot.send_message(message.chat.id, 'Всем общий салам')
+        bot.send_message(message.chat.id, 'Сюрприз сюрпиз ублюдки, король вернулся ')
     else:
         None
 
@@ -99,12 +99,9 @@ def send_message_user(message):
     random.shuffle(tlist)
     random.shuffle(inglist)
     user_id = message.from_user.id
-    ing_user = []
+    # ing_user = [946852807, 580997709, 883009600, 1399833038, 1334736460, 5273766322, 621947416]
     if check_status(user_id):
-        if user_id in ing_user:
-            bot.reply_to(message, random.choice(inglist))
-        else:
-            bot.reply_to(message, random.choice(tlist))
+        bot.reply_to(message, random.choice(tlist))
     else:
         None
 

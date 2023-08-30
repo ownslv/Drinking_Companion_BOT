@@ -1,0 +1,8 @@
+version: '3.3'
+services:
+  telegram:
+    image: vzangiev/bot_drink
+    
+    env_file:
+      - .env
+    restart: always
